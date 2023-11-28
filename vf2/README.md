@@ -76,7 +76,7 @@ $ cat <<EOF >> /etc/default/u-boot
 U_BOOT_PARAMETERS="rw console=tty0 console=ttyS0,115200 earlycon rootwait stmmaceth=chain_mode:1 selinux=0"
 EOF
 $ cat /etc/default/u-boot # double check your work
-$ dpkg-reconfigure linux-image-5.15.0-starfive-g7b7b4eddd8d5
+$ dpkg-reconfigure linux-image-6.6.*-** # here is your kernel version
 $ cat /boot/extlinux/extlinux.conf # double check your work
 
 # modify rootfs mount dirctory, here is on SD card.
@@ -110,7 +110,10 @@ sudo losetup -d /dev/loop6
 
 # Finish and write image to sdcard
 # take care of writing to the correct sdcard-device
+
+```bash
 sudo dd if=debian-sid-risc-v-vf2.img of=/dev/sdcard-device bs=64k iflag=fullblock oflag=direct conv=fsync status=progress
+```
 
 # issues
 
@@ -135,5 +138,8 @@ label l0
 By default the device tree support 4GB, you have to compile 8GB dtb by hand(I will added it for vf2-linux also). please refer to:
 https://github.com/starfive-tech/VisionFive2/issues/20#issuecomment-1374907916
 
+# links
+1. https://blog.inuyasha.love/linuxeveryday/start-visionfive2-with-debian-sid.html
+2. https://wiki.debian.org/InstallingDebianOn/SiFive/%20HiFiveUnmatched
 Any issue please open issue or email me, thanks.
 
