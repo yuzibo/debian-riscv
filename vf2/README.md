@@ -58,7 +58,7 @@ EOF
 passwd
 
 # Change hostname
-echo unmatched > /etc/hostname
+echo vf2 > /etc/hostname
 
 # config u-boot
 cat <<EOF > /boot/uEnv.txt
