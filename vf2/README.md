@@ -14,7 +14,11 @@ You can follow the [wiki](https://doc-en.rvspace.org/VisionFive2/Quick_Start_Gui
 dd if=/dev/zero of=debian-sid-risc-v-vf2.img bs=1M count=4096
 
 # Partition image with correct disk IDs
-sudo sgdisk -g --clear --set-alignment=1          -g --clear --new=1:0:+16M: --new=2:0:+100M: -t 2:EF00 --new=3:0:-1M: --attributes 3:set:2 -d 1 debian-sid-risc-v-vf2.img
+sudo sgdisk -g --clear --set-alignment=1 \
+    --new=1:0:+16M: \
+    --new=2:0:+100M: -t 2:EF00 \
+    --new=3:0:-1M: --attributes 3:set:2 -d 1 \
+debian-sid-risc-v-vf2.img
 
 # Mount image in loop device
 sudo losetup --partscan --find --show debian-sid-risc-v-vf2.img
